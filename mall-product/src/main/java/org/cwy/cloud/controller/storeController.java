@@ -44,6 +44,7 @@ public class storeController {
     @PutMapping("/goods")
     public CommonResult editGoods(@RequestBody editGoodsDTO goods){
         goodsService.editGoods(goods);
+        System.out.println(123123);
         return CommonResult.editSuccess();
     }
 
