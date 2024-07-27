@@ -1,13 +1,11 @@
 package org.cwy.cloud.test;
 
 import jakarta.annotation.Resource;
-import org.cwy.cloud.PO.orderPO;
+import org.cwy.cloud.model.PO.orderPO;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
-
-import java.util.Map;
 
 @SpringBootTest
 public class snappingOrderText {

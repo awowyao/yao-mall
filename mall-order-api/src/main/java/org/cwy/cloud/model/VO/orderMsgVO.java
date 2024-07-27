@@ -1,4 +1,4 @@
-package org.cwy.cloud.VO;
+package org.cwy.cloud.model.VO;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

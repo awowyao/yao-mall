@@ -1,4 +1,4 @@
-package org.cwy.cloud.DTO;
+package org.cwy.cloud.model.DTO;
 
 import lombok.Data;
 

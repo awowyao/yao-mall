@@ -1,7 +1,7 @@
 package org.cwy.cloud.controller;
 
 import jakarta.annotation.Resource;
-import org.cwy.cloud.DTO.orderDTO;
+import org.cwy.cloud.model.DTO.orderDTO;
 import org.cwy.cloud.common.api.CommonResult;
 import org.cwy.cloud.service.snappingUpOrderService;
 import org.springframework.web.bind.annotation.*;

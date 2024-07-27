@@ -1,17 +1,13 @@
 package org.cwy.cloud.controller.rabbitMQ;
 
 import jakarta.annotation.Resource;
-import org.cwy.cloud.PO.orderMsgPO;
-import org.cwy.cloud.PO.orderPO;
+import org.cwy.cloud.model.PO.orderMsgPO;
+import org.cwy.cloud.model.PO.orderPO;
 import org.cwy.cloud.mapper.orderMapper;
 
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.http.StreamingHttpOutputMessage;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 @Component
 public class orderTimeReceiveHandler {

@@ -1,4 +1,4 @@
-package org.cwy.cloud.PO;
+package org.cwy.cloud.model.PO;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;

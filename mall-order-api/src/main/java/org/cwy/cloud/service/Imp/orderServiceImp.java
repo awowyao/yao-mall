@@ -1,21 +1,34 @@
 package org.cwy.cloud.service.Imp;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.seata.spring.annotation.GlobalTransactional;
 import jakarta.annotation.Resource;
+import org.apache.ibatis.jdbc.Null;
 import org.cwy.cloud.DTO.CouponsDTO;
-import org.cwy.cloud.DTO.orderDTO;
-import org.cwy.cloud.PO.orderMsgPO;
-import org.cwy.cloud.PO.orderPO;
+import org.cwy.cloud.common.orderStatueCode;
+import org.cwy.cloud.model.DTO.afterSalesDTO;
+import org.cwy.cloud.model.DTO.orderDTO;
+import org.cwy.cloud.model.DTO.orderMsgDTO;
+import org.cwy.cloud.model.DTO.orderPage;
+import org.cwy.cloud.model.PO.orderMsgPO;
+import org.cwy.cloud.model.PO.orderPO;
 import org.cwy.cloud.feign.goodsFeign;
 import org.cwy.cloud.feign.uniqidFeign;
 import org.cwy.cloud.feign.userFeign;
 import org.cwy.cloud.mapper.orderMapper;
 import org.cwy.cloud.mapper.orderMsgMapper;
-import org.cwy.cloud.model.orderSetting;
+import org.cwy.cloud.common.orderSetting;
+import org.cwy.cloud.result.MyAssert;
 import org.cwy.cloud.service.orderService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -59,6 +72,7 @@ public class orderServiceImp implements orderService {
         Integer omid =  uniqidFeign.GetId(1);
         newMsg.setOId(orderData.getOid());
         newMsg.setOmId(omid);
+        newMsg.setOrderStatue(2);
         order.setOrderMsgid(omid);
         Integer goodsId = orderData.getGoodsId();
         Map<String,Object> goodsData = (Map<String,Object>)goodsFeign.getGoodsById(goodsId).getData();
@@ -91,6 +105,48 @@ public class orderServiceImp implements orderService {
             return orderMsgMapper.insert(newMsg);
         }else {
             return 2;
+        }
+    }
+
+    @Override
+    public List<orderMsgPO> getOrder(orderPage page) {
+        LambdaQueryWrapper<orderMsgPO> orderLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        Page<orderMsgPO> orderPage = new Page<>(page.getPage(), page.getPageSize());
+        IPage<orderMsgPO> orderIPage = orderMsgMapper.selectPage(orderPage , orderLambdaQueryWrapper);
+        MyAssert.notEmpty(orderIPage.getRecords(), "查询为空");
+        return orderIPage.getRecords();
+    }
+
+    @Override
+    public void deleteOrder(Integer id) {
+        LambdaUpdateWrapper<orderMsgPO> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
+        lambdaUpdateWrapper.set(orderMsgPO::getOrderStatue, orderStatueCode.END);
+        lambdaUpdateWrapper.eq(orderMsgPO::getOmId, id);
+        MyAssert.isZero(orderMsgMapper.update(lambdaUpdateWrapper));
+    }
+
+    @Override
+    public void editOrder(orderMsgDTO orderMsg) {
+        orderMsgPO order = new orderMsgPO();
+        BeanUtils.copyProperties(orderMsg, order);
+        MyAssert.isZero(orderMsgMapper.updateById(order));
+    }
+
+    @Override
+    public void afterSales(afterSalesDTO afterSales) {
+        if (afterSales.isDisposal()) {
+            LambdaUpdateWrapper<orderMsgPO> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
+            lambdaUpdateWrapper.eq(orderMsgPO::getOmId, afterSales.getOmId());
+            if (afterSales.getFilingType() == orderStatueCode.FILED_REFUND) {
+                lambdaUpdateWrapper.set(orderMsgPO::getOrderStatue, orderStatueCode.REFUND);
+            } else if (afterSales.getFilingType() == orderStatueCode.FILED_RETURNABLE) {
+                lambdaUpdateWrapper.set(orderMsgPO::getOrderStatue, orderStatueCode.RETURNABLE);
+            }
+            MyAssert.isZero(orderMsgMapper.update(lambdaUpdateWrapper));
+        }else {
+//            System.out.println(123);
+            throw new IllegalArgumentException("传入类型错误");
+//            MyAssert.notNull(null, "传入类型错误");
         }
     }
 

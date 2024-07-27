@@ -1,18 +1,13 @@
 package org.cwy.cloud.service.Imp;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import jakarta.annotation.Resource;
-import org.cwy.cloud.DTO.CouponsDTO;
-import org.cwy.cloud.DTO.orderDTO;
-import org.cwy.cloud.PO.orderMsgPO;
-import org.cwy.cloud.PO.orderPO;
+import org.cwy.cloud.model.DTO.orderDTO;
+import org.cwy.cloud.model.PO.orderMsgPO;
+import org.cwy.cloud.model.PO.orderPO;
 import org.cwy.cloud.feign.goodsFeign;
 import org.cwy.cloud.feign.uniqidFeign;
-import org.cwy.cloud.mapper.orderMsgMapper;
-import org.cwy.cloud.model.orderSetting;
 import org.cwy.cloud.service.snappingUpOrderService;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.BoundValueOperations;
 import org.springframework.data.redis.core.RedisTemplate;
