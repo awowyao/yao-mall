@@ -1,0 +1,54 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: mall-snapping-up-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mall-snapping_up?serverTimezone=UTC&userUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    stream:
+      username: guest
+      password: guest
+      virtual-host: /
+  redis:
+    date:
+      host: 127.0.0.1
+      port: 6379
+#  redis:
+#    date:
+#      host: 127.0.0.1
+#      port: 6379
+  cloud:
+#    openfeign:
+#      httpclient:
+#        enabled: false
+#      okhttp:
+#        enabled: true
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+#seata:
+#  registry:
+#    type: nacos
+#    nacos:
+#      server-addr: 127.0.0.1:8848
+#      namespace: ""
+#      group: DEFAULT_GROUP
+#      application: seata-server
+#  tx-service-group: default_tx_group
+#  service:
+#    vgroup-mapping:
+#      default_tx_group: default
+#  data-source-proxy-mode: AT
+
+#logging:
+#  level:
+#    io:
+#      seata: info

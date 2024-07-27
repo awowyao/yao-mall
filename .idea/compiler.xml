@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mall-redis" />
+        <module name="mall-snapping-up" />
+        <module name="mall-order-api" />
+        <module name="mall-user-api" />
+        <module name="unqid" />
+        <module name="mall-authcenter" />
+        <module name="mall-unqid" />
+        <module name="mall-common" />
+        <module name="mall-product" />
+        <module name="mall-gateway" />
+        <module name="mall-pay" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mall-authcenter" options="-parameters" />
+      <module name="mall-common" options="-parameters" />
+      <module name="mall-gateway" options="-parameters" />
+      <module name="mall-order-api" options="-parameters" />
+      <module name="mall-pay" options="-parameters" />
+      <module name="mall-product" options="-parameters" />
+      <module name="mall-redis" options="-parameters" />
+      <module name="mall-snapping-up" options="-parameters" />
+      <module name="mall-unqid" options="-parameters" />
+      <module name="mall-user-api" options="-parameters" />
+      <module name="unqid" options="-parameters" />
+    </option>
+  </component>
+</project>
