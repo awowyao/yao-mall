@@ -34,7 +34,7 @@ public class snappingUpOrderServiceImp implements snappingUpOrderService {
         Integer orderId = uniqidFeign.GetId(1);
         order.setOid(orderId);
         order.setState(0);
-        order.setBuy_user_id(userId);
+        order.setBuyUserId(userId);
         BoundHashOperations<String, Object, Object> orderHash = redisTemplate.boundHashOps(userId+"_"+orderId);
         BoundHashOperations<String, Object, Object> orderDataHash = redisTemplate.boundHashOps("snappingUpData_"+goodsId);
         if ((Integer)orderDataHash.get("stock_limit")<buyNub){

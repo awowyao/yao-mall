@@ -5,61 +5,126 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bfcdd95-6ccf-4600-838e-3c7ccf91ba10" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/mall-common/src/main/java/org/cwy/cloud/DTO/CommonPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mall-common/src/main/java/org/cwy/cloud/result/MyAssert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/common/orderStatueCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/controller/storeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/DTO/afterSalesDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/DTO/orderMsgDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/DTO/orderPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-common/src/main/java/org/cwy/cloud/DTO/commonCouponsPO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-common/target/classes/org/cwy/cloud/DTO/CommonPage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-common/target/classes/org/cwy/cloud/result/MyAssert.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/config/GlobalCorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/config/MybatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/common/orderSetting.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/common/orderStatueCode.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/controller/storeController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/model/DTO/afterSalesDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/model/DTO/orderDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/model/DTO/orderMsgDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/model/DTO/orderPage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/model/PO/orderMsgPO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/model/PO/orderPO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/model/PO/returnablePO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/model/VO/orderMsgVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/model/VO/orderVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/config/GlobalCorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/controller/storeCouponsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/model/DTO/CouponsDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/model/DTO/couponsPageDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/model/DTO/editCouponsDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/service/Imp/couponsServiceImp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/service/couponsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-product/src/main/resources/mapper/couponsMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/config/GlobalCorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/config/MybatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/controller/storeSnappingUpController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/model/DTO/editSnappingUpDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/model/DTO/snappingUpPageDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/config/GlobalCorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/config/MybatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/controller/addressController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/feign/couponsFeign.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/feign/uniqidFeign.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/mapper/addressMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/modle/DTO/addressDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/modle/DTO/addressPageDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/service/Impl/addressServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/service/Impl/userServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/service/addressService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/DTO/orderDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/DTO/orderDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/PO/orderMsgPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/PO/orderMsgPO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/PO/orderPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/PO/orderPO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/PO/returnablePO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/PO/returnablePO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/VO/orderMsgVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/VO/orderMsgVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/VO/orderVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/VO/orderVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/config/exceptionConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/config/exceptionConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/controller/SnappingUpOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/controller/SnappingUpOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-common/src/main/java/org/cwy/cloud/DTO/CouponsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/src/main/java/org/cwy/cloud/DTO/CouponsDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-common/target/classes/org/cwy/cloud/DTO/CouponsDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-common/target/classes/org/cwy/cloud/DTO/CouponsDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/config/MyMetaObjectHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/config/MyMetaObjectHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/controller/orderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/controller/orderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/controller/rabbitMQ/orderTimeReceiveHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/controller/rabbitMQ/orderTimeReceiveHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/controller/returnableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/controller/returnableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/mapper/orderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/mapper/orderMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/mapper/orderMsgMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/mapper/orderMsgMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/mapper/returnableMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/mapper/returnableMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/orderSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/common/orderSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/feign/goodsFeign.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/feign/goodsFeign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/DTO/orderDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/DTO/orderDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/DTO/orderPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/DTO/orderPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/PO/orderMsgPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/PO/orderMsgPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/PO/orderPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/PO/orderPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/VO/orderMsgVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/model/VO/orderMsgVO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/service/Imp/orderServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/service/Imp/orderServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/service/Imp/returnableServiceIml.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/service/Imp/returnableServiceIml.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/service/Imp/snappingUpOrderServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/service/Imp/snappingUpOrderServiceImp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/service/orderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/service/orderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/service/returnableService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/service/returnableService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/service/snappingUpOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/main/java/org/cwy/cloud/service/snappingUpOrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/src/test/java/org/cwy/cloud/test/snappingOrderText.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/src/test/java/org/cwy/cloud/test/snappingOrderText.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/DTO/orderDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/PO/orderMsgPO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/PO/orderPO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/PO/returnablePO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/VO/orderMsgVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/VO/orderVO.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/config/exceptionConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/config/exceptionConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/controller/SnappingUpOrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/controller/SnappingUpOrderController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/controller/orderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/controller/orderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/controller/rabbitMQ/orderTimeReceiveHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/controller/rabbitMQ/orderTimeReceiveHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/controller/returnableController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/controller/returnableController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/mapper/orderMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/mapper/orderMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/mapper/orderMsgMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/mapper/orderMsgMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/mapper/returnableMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/mapper/returnableMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/model/orderSetting.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/feign/goodsFeign.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/feign/goodsFeign.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/service/Imp/orderServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/service/Imp/orderServiceImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/service/Imp/returnableServiceIml.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/service/Imp/returnableServiceIml.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/service/Imp/snappingUpOrderServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/service/Imp/snappingUpOrderServiceImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/service/orderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/service/orderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/service/returnableService.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/service/returnableService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/service/snappingUpOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-order-api/target/classes/org/cwy/cloud/service/snappingUpOrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/config/exceptionConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/config/exceptionConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/controller/storeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/controller/storeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/controller/couponsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/controller/couponsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/controller/goodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/controller/goodsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/mapper/couponsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/mapper/couponsMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/model/DTO/editGoodsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/model/DTO/editGoodsDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/model/DTO/goodsPageDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/model/DTO/goodsPageDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/model/PO/couponsPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/model/PO/couponsPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/service/Imp/goodsServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/service/Imp/goodsServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/service/goodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/src/main/java/org/cwy/cloud/service/goodsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/controller/couponsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/controller/couponsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/controller/goodsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/controller/goodsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/mapper/couponsMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/mapper/couponsMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/model/DTO/goodsPageDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/model/DTO/goodsPageDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/model/PO/couponsPO.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/model/PO/couponsPO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/service/Imp/goodsServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/service/Imp/goodsServiceImp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/service/goodsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-product/target/classes/org/cwy/cloud/service/goodsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-snapping-up/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-snapping-up/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/config/MyMetaObjectHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/config/MyMetaObjectHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/controller/snappingUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/controller/snappingUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/model/PO/snappingUpPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/model/PO/snappingUpPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/service/Imp/snappingUpServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/service/Imp/snappingUpServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/service/snappingUpService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-snapping-up/src/main/java/org/cwy/cloud/service/snappingUpService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-snapping-up/target/classes/org/cwy/cloud/config/MyMetaObjectHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-snapping-up/target/classes/org/cwy/cloud/config/MyMetaObjectHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-snapping-up/target/classes/org/cwy/cloud/controller/snappingUpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-snapping-up/target/classes/org/cwy/cloud/controller/snappingUpController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-snapping-up/target/classes/org/cwy/cloud/model/PO/snappingUpPO.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-snapping-up/target/classes/org/cwy/cloud/model/PO/snappingUpPO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-snapping-up/target/classes/org/cwy/cloud/service/Imp/snappingUpServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-snapping-up/target/classes/org/cwy/cloud/service/Imp/snappingUpServiceImp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-snapping-up/target/classes/org/cwy/cloud/service/snappingUpService.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-snapping-up/target/classes/org/cwy/cloud/service/snappingUpService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/MainUserApi8081.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/MainUserApi8081.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/config/ResourceServerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/config/ResourceServerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/controller/couponsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/controller/couponsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/controller/testConterller.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/controller/testConterller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/exception/MyAccessDeniedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/exception/MyAccessDeniedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/exception/MyAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/exception/MyAuthenticationEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/exception/ResponseResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/exception/ResponseResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/exception/ResultCodeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/exception/ResultCodeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/mapper/userMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/mapper/userMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/modle/DTO/CouponsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/modle/DTO/CouponsDTOa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/modle/PO/addressPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/modle/PO/addressPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/service/Iml/userServiceIml.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/service/userService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/java/org/cwy/cloud/service/userService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/src/main/resources/mapper/userMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/src/main/resources/mapper/userMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/mapper/userMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/target/classes/mapper/userMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/MainUserApi8081.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/MainUserApi8081.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/config/ResourceServerConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/controller/couponsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/controller/couponsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/controller/testConterller.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/controller/testConterller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/exception/MyAccessDeniedHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/exception/MyAuthenticationEntryPoint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/exception/ResponseResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/exception/ResultCodeEnum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/mapper/userMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/mapper/userMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/modle/DTO/CouponsDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/modle/PO/addressPO.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/modle/PO/addressPO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/service/Iml/userServiceIml.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/service/userService.class" beforeDir="false" afterPath="$PROJECT_DIR$/mall-user-api/target/classes/org/cwy/cloud/service/userService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +177,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/springcloud项目/mall&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/springcloud项目/mall/mall-user-api/src/main/java/org/cwy/cloud&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -123,7 +188,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
     &quot;show.run.dashboard.notification&quot;: &quot;false&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;095d60210769e5c488634ea3f65f3c59&quot;
+    &quot;spring.configuration.checksum&quot;: &quot;e36b18770db701bd4c58986f42be7c12&quot;
   }
 }</component>
   <component name="ReactorSettings">
@@ -131,18 +196,21 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\springcloud项目\mall\mall-user-api\src\main\java\org\cwy\cloud" />
       <recent name="E:\springcloud项目\mall\mall-authcenter\src\main\java\org\cwy\cloud\oauth2\extension" />
       <recent name="E:\springcloud项目\mall\mall-common\src\main\java\org\cwy\cloud" />
       <recent name="E:\springcloud项目\mall\mall-authcenter\src\main\java\org\cwy\cloud\util" />
       <recent name="E:\springcloud项目\mall\mall-authcenter\src\main\java\org\cwy\cloud" />
-      <recent name="E:\springcloud项目\mall\mall-gateway\src\main\java\org\cwy\cloud\config" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\springcloud项目\mall\mall-product\src\main\resources\mapper" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.cwy.cloud.config" />
+      <recent name="org.cwy.cloud.DTO" />
       <recent name="org.cwy.cloud.result" />
       <recent name="org.cwy.cloud.common" />
       <recent name="org.cwy.cloud.feign" />
-      <recent name="org.cwy.cloud.util" />
-      <recent name="org.cwy.cloud.mapper" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -279,9 +347,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.MainUserApi8081" />
         <item itemvalue="Spring Boot.MainProduct8085" />
         <item itemvalue="Spring Boot.MainUniqid" />
-        <item itemvalue="Spring Boot.MainUserApi8081" />
         <item itemvalue="JUnit.storeTest.getGoodsTest" />
         <item itemvalue="JUnit.storeTest.editGoodsTest" />
       </list>
@@ -338,7 +406,12 @@
       <workItem from="1720764513403" duration="12621000" />
       <workItem from="1721974702685" duration="3208000" />
       <workItem from="1721980397591" duration="8765000" />
-      <workItem from="1722065264919" duration="10689000" />
+      <workItem from="1722065264919" duration="10815000" />
+      <workItem from="1722229673616" duration="10129000" />
+      <workItem from="1722315732380" duration="9948000" />
+      <workItem from="1722406987690" duration="7936000" />
+      <workItem from="1722492421180" duration="8759000" />
+      <workItem from="1722595115808" duration="1450000" />
     </task>
     <task id="LOCAL-00001" summary="提交">
       <created>1722066614778</created>
@@ -354,16 +427,34 @@
       <option name="project" value="LOCAL" />
       <updated>1722067615102</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="提交">
+      <created>1722076286681</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1722076286681</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="提交" />
     <MESSAGE value="分支提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="分支提交" />
+    <MESSAGE value="提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="提交" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

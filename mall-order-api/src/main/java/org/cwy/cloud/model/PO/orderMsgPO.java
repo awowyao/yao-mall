@@ -23,6 +23,7 @@ public class orderMsgPO implements Serializable {
     private Integer storeId;
     private Integer buyersId;
     private Integer couponsId;
+    private Integer addressId;
     private Integer orderStatue;
     private Integer returnableId;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

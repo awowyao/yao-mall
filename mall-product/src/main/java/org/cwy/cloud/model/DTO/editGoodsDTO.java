@@ -11,4 +11,5 @@ import lombok.Data;
 @Data
 public class editGoodsDTO extends goodsDTO{
     private Integer id;
+
 }

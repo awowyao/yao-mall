@@ -17,9 +17,9 @@ public class orderTimeReceiveHandler {
 
     @RabbitListener(queues = "user.order.receive_queue")
     public void receive_email(orderMsgPO orderMsg) {
-        System.out.println(orderMsg.getOId());
+//        System.out.println(orderMsg.getOId());
         orderPO orderPO = orderMapper.selectById(orderMsg.getOId());
-        System.out.println(orderPO);
+//        System.out.println(orderPO);
         if (orderPO.getState() == 1) {
             orderPO.setState(5);
         }

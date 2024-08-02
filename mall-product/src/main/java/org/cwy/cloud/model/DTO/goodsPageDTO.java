@@ -12,6 +12,7 @@ import java.io.Serializable;
  */
 @Data
 public class goodsPageDTO implements Serializable {
+    private Integer storeId;
     private Integer pageSize;
     private Integer page;
     public goodsPageDTO() {

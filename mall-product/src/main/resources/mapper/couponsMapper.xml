@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.cwy.cloud.mapper.couponsMapper">
+    <insert id="addGoodsAndCoupons">
+        INSERT INTO goods_coupons_table (id, gid, cid)
+        SELECT #{id},#{goodsId}, #{couponsId} FROM DUAL
+                                                    WHERE not EXISTS(SELECT id FROM goods_coupons_table
+                                                                               Where gid = #{goodsId} and cid = #{couponsId})
+
+    </insert>
+
+    <select id="getCouponsByGoodsId" resultType="org.cwy.cloud.model.PO.couponsPO"
+            parameterType="java.lang.Integer">
+        select * from coupons_table as c LEFT JOIN goods_coupons_table as g on g.gid = #{goodsId} where c.id = g.cid;
+
+    </select>
+    <select id="checkCouponsById" resultType="java.lang.Integer">
+        select count(*) from goods_coupons_table where gid=#{gid} and cid=#{cid}
+    </select>
+
+</mapper>

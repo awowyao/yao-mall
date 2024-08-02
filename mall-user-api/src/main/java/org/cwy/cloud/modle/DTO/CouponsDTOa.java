@@ -1,6 +1,6 @@
 package org.cwy.cloud.modle.DTO;
 
-public class CouponsDTO {
+public class CouponsDTOa {
     public Integer getCouponsId() {
         return couponsId;
     }
@@ -17,14 +17,22 @@ public class CouponsDTO {
         this.userId = userId;
     }
 
+    Integer couponsId;
+    Integer userId;
+    Integer id;
+    public Integer getId() {
+        return id;
+    }
+
+
     @Override
     public String toString() {
         return "CouponsDTO{" +
                 "couponsId=" + couponsId +
                 ", userId=" + userId +
+                ", id=" + id +
                 '}';
     }
 
-    Integer couponsId;
-    Integer userId;
+
 }

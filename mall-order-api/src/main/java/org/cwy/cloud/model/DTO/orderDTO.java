@@ -12,5 +12,6 @@ public class orderDTO {
     private Integer goodsId;
     private Integer returnableId;
     private Integer couponsId;
+    private Integer addressId;
     private String returnableText;
 }

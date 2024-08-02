@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
-        System.out.println("创建时间");
+//        System.out.println("创建时间");
         this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
         this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
 //        this.setFieldValByName("updateUser", "", metaObject);
@@ -20,7 +20,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        System.out.println("更新时间");
+//        System.out.println("更新时间");
         this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
 //        this.setFieldValByName("updateUser", "", metaObject);
     }

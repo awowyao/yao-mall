@@ -12,12 +12,13 @@ import java.util.Date;
 public class orderMsgVO {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private Integer goods_id;
+    private Integer goodsId;
     private String goods_title;
     private Double price;
     private Double couponsPrice;
-    private Integer store_id;
-    private Integer buyers_id;
+    private Integer storeId;
+    private Integer buyersId;
+    private Integer addressId;
     private Integer couponsId;
     private Date create_time;
     private Date update_time;

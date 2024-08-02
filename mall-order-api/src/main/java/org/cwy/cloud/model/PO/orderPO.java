@@ -16,7 +16,7 @@ public class orderPO implements Serializable {
     @TableId(value = "oid",type = IdType.AUTO)
     private Integer oid;
     private Integer orderMsgid;
-    private Integer buy_user_id;
+    private Integer buyUserId;
     private Integer returnable_id;
     private Integer buyNub;
     private Integer buyGoodsId;

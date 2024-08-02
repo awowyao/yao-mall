@@ -13,5 +13,5 @@ import java.io.Serializable;
  */
 @Data
 public class orderPage extends CommonPage implements Serializable {
-
+    private Integer userId;
 }

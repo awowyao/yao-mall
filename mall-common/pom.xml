@@ -11,6 +11,12 @@
 
     <artifactId>mall-common</artifactId>
     <dependencies>
+        <!-- jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <!--            <version>2.12.5</version> &lt;!&ndash; 请根据您的项目需要使用适当的版本 &ndash;&gt;-->
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

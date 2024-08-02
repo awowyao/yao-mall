@@ -23,7 +23,12 @@ public class snappingUpPO implements Serializable {
     private Integer stockNumber;
     private Integer stockLimit;
     private Double price;
+    private Integer deleteStatue;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date beginTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date endTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -31,6 +36,6 @@ public class snappingUpPO implements Serializable {
     private LocalDateTime createTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @TableField(value = "create_time", fill = FieldFill.UPDATE)
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 }

@@ -18,11 +18,11 @@ spring:
 #        dashboard: localhost:8080
 #        port: 8719
 
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri: http://127.0.0.1:9001/oauth2/jwks
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          jwk-set-uri: http://127.0.0.1:9001/oauth2/jwks
 seata:
   registry:
     type: nacos

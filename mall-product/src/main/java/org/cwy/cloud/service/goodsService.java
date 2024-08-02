@@ -9,11 +9,12 @@ import org.cwy.cloud.model.PO.goodsPO;
 import org.cwy.cloud.model.VO.goodsVO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface goodsService {
-    List<goodsVO> GetGoodsAll(Integer page, Integer pageSize);
+    List<goodsVO> GetGoodsAll(goodsPageDTO goodsPageDTO);
 
-    goodsVO GetGoodsById(Integer goosdId);
+    Map<String, Object> GetGoodsById(Integer goosdId);
 
     int subtractInventory(Integer goodsId, Integer buyNub);
 
@@ -26,4 +27,8 @@ public interface goodsService {
     void deleteGoods(Integer goodsId);
 
     void editGoods(editGoodsDTO goods);
+
+    Map<String, Object> GetGoodsByStoreId(goodsPageDTO goodsPage);
+
+    couponsPO checkCouponsById(Integer gid, Integer couponsId);
 }

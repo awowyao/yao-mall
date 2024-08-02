@@ -4,8 +4,11 @@ import jakarta.annotation.Resource;
 import org.cwy.cloud.common.api.CommonResult;
 import org.cwy.cloud.model.DTO.snappingUpDTO;
 import org.cwy.cloud.model.DTO.snappingUpOrderDTO;
+import org.cwy.cloud.model.DTO.snappingUpPageDTO;
 import org.cwy.cloud.service.snappingUpService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/snappingUpApi")
@@ -13,13 +16,11 @@ public class snappingUpController {
     @Resource
     private snappingUpService snappingUpService;
 
-    @PostMapping("/addSnapping")
-    public CommonResult<String> addSnappingUp(@RequestBody snappingUpDTO snappingUp) {
-        Integer state = snappingUpService.addSnappingUp(snappingUp);
-        if (state ==1){
-            return CommonResult.success("1");
-        }
-        return CommonResult.failed();
+    @PostMapping("/getSnappingUp")
+    public CommonResult getSnappingUp(@RequestBody snappingUpPageDTO snappingUpPageDTO) {
+        Map<String, Object> data = snappingUpService.getSnappingUp(snappingUpPageDTO);
+        return CommonResult.success(data);
+
     }
 
     @PostMapping("/addSnappingUpOrder")

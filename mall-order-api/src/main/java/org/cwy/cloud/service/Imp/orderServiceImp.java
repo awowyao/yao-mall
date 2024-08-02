@@ -28,6 +28,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,7 +53,7 @@ public class orderServiceImp implements orderService {
         order.setBuyGoodsId(goodsId);
         order.setOid(uniqidFeign.GetId(1));
         order.setState(0);
-        order.setBuy_user_id(userId);
+        order.setBuyUserId(userId);
         orderMapper.insert(order);
         return order.getOid();
     }
@@ -72,11 +73,13 @@ public class orderServiceImp implements orderService {
         Integer omid =  uniqidFeign.GetId(1);
         newMsg.setOId(orderData.getOid());
         newMsg.setOmId(omid);
+        newMsg.setAddressId(orderData.getAddressId());
         newMsg.setOrderStatue(2);
         order.setOrderMsgid(omid);
-        Integer goodsId = orderData.getGoodsId();
-        Map<String,Object> goodsData = (Map<String,Object>)goodsFeign.getGoodsById(goodsId).getData();
-        if (goodsFeign.subtractInventory((Integer) goodsData.get("id"), order.getBuyNub())==1){
+        Integer goodsId = order.getBuyGoodsId();
+        Map<String,Object> goodsData = (Map<String, Object>) goodsFeign.getGoodsByIds(goodsId).getData();
+        goodsData = (Map<String, Object>) goodsData.get("data");
+        if (goodsFeign.subtractInventory(goodsId, order.getBuyNub())==1){
             Double price = (Double) goodsData.get("price") * order.getBuyNub();
             newMsg.setPrice(price);
             newMsg.setBuyersId(orderData.getBuyUserId());
@@ -85,12 +88,13 @@ public class orderServiceImp implements orderService {
             newMsg.setGoodsTitle((String) goodsData.get("title"));
             newMsg.setCouponsPrice(price);
             if (orderData.getCouponsId()!=null) {
-                Map<String,Object> couponData = (Map<String,Object>)goodsFeign.getCouponsById(orderData.getCouponsId()).getData();
-                CouponsDTO Coupons = new CouponsDTO(orderData.getCouponsId(), orderData.getBuyUserId());
+                Map<String,Object> couponData = goodsFeign.checkCouponsById(goodsId ,orderData.getCouponsId());
+                MyAssert.notEmpty(couponData, "优惠卷不存在或不可用");
+                CouponsDTO Coupons = new CouponsDTO(orderData.getCouponsId(), order.getBuyUserId());
                 if (price >=((Integer) couponData.get("max")) && userFeign.useCoupons(Coupons)==1){
                     newMsg.setCouponsPrice(price- (Integer) couponData.get("subtract"));
 //                    TimeUnit.SECONDS.sleep(20);
-
+                    newMsg.setCouponsId((Integer) couponData.get("id"));
                     rabbitTemplate.convertAndSend("user.order.delay_exchange", "user.order.delay_key", newMsg, message -> {
                         message.getMessageProperties().setExpiration(orderSetting.ORDERTIME);
                         return message;
@@ -148,6 +152,20 @@ public class orderServiceImp implements orderService {
             throw new IllegalArgumentException("传入类型错误");
 //            MyAssert.notNull(null, "传入类型错误");
         }
+    }
+
+    @Override
+    public Map<String, Object> getOrderList(orderPage page) {
+        LambdaQueryWrapper<orderMsgPO> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(orderMsgPO::getBuyersId, page.getUserId());
+        Page<orderMsgPO> orderPage = new Page<>(page.getPage(), page.getPageSize());
+        IPage<orderMsgPO> orderMsgPOIPage = orderMsgMapper.selectPage(orderPage, lambdaQueryWrapper);
+        Map<String, Object> orderListMap = new HashMap<>();
+        MyAssert.notEmpty(orderMsgPOIPage.getRecords(), "查询结果为0");
+        orderListMap.put("total", orderMsgPOIPage.getTotal());
+        orderListMap.put("pages", orderMsgPOIPage.getPages());
+        orderListMap.put("data", orderMsgPOIPage.getRecords());
+        return orderListMap;
     }
 
 

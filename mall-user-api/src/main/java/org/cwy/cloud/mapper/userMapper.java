@@ -7,8 +7,14 @@ import org.apache.ibatis.annotations.Param;
 import org.cwy.cloud.DTO.CouponsDTO;
 import org.cwy.cloud.modle.PO.userPO;
 
+import java.util.List;
+
 @Mapper
 public interface userMapper extends BaseMapper<userPO> {
 
     int useCoupons(@Param("coupons") CouponsDTO coupons);
+
+    Integer insertCoupons(@Param("coupons") CouponsDTO coupons);
+
+    List<Integer> getCouponsListByUid(@Param("uid") int uid);
 }

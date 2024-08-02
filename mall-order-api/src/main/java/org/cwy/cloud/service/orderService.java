@@ -7,6 +7,7 @@ import org.cwy.cloud.model.DTO.orderPage;
 import org.cwy.cloud.model.PO.orderMsgPO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface orderService {
     Integer getOrderId(Integer userId, Integer goodsId, Integer buyNub);
@@ -21,4 +22,7 @@ public interface orderService {
     void editOrder(orderMsgDTO orderMsg);
 
     void afterSales(afterSalesDTO afterSales);
+
+
+    Map<String, Object> getOrderList(orderPage page);
 }

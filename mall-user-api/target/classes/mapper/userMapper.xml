@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.cwy.cloud.mapper.userMapper">
+    <insert id="insertCoupons" parameterType="org.cwy.cloud.DTO.CouponsDTO">
+        INSERT INTO user_coupons_table (id, cid, uid) VALUES (#{coupons.id} ,#{coupons.couponsId}, #{coupons.userId})
+    </insert>
 
     <delete id="useCoupons">
         DELETE from user_coupons_table where cid=#{coupons.couponsId} and uid=#{coupons.userId}  limit 1;
     </delete>
+    <select id="getCouponsListByUid" resultType="java.lang.Integer" parameterType="int">
+        select cid from user_coupons_table where uid=#{uid}
+    </select>
 </mapper>

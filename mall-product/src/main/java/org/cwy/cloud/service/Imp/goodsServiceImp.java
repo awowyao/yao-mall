@@ -21,10 +21,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.cwy.cloud.common.goodsCommon.GOODS_DELETE;
 import static org.cwy.cloud.common.goodsCommon.GOODS_UP;
@@ -41,14 +38,14 @@ public class goodsServiceImp implements goodsService {
     @Resource
     private uniqidFeign uniqidFeign;
     @Override
-    public List<goodsVO> GetGoodsAll(Integer page, Integer pageSize) {
+    public List<goodsVO> GetGoodsAll(goodsPageDTO goodsPage) {
 
         LambdaQueryWrapper<goodsPO> Weapper = new LambdaQueryWrapper<>();
 //        Weapper.eq(goodsPO::getId, 1);
-
-        List<goodsPO> goods = goodsmapper.selectList(Weapper);
+        Page<goodsPO> page = new Page<>(goodsPage.getPage(), goodsPage.getPageSize());
+        IPage<goodsPO> IGoodsPage = goodsmapper.selectPage(page, Weapper);
         List<goodsVO> goodsVoList = new ArrayList<goodsVO>();
-        for(goodsPO i: goods) {
+        for(goodsPO i: IGoodsPage.getRecords()) {
             goodsVO goodsVo = new goodsVO();
             BeanUtils.copyProperties(i, goodsVo);
             goodsVoList.add(goodsVo);
@@ -57,11 +54,16 @@ public class goodsServiceImp implements goodsService {
     }
 
     @Override
-    public goodsVO GetGoodsById(Integer goodsId) {
+    public Map<String, Object> GetGoodsById(Integer goodsId) {
+        Map<String, Object> R = new HashMap<>();
         goodsPO data = goodsmapper.selectById(goodsId);
+        List<couponsPO> couponsPOList = couponsMapper.getCouponsByGoodsId(goodsId);
+        R.put("couponsList", couponsPOList);
         goodsVO goods = new goodsVO();
+
         BeanUtils.copyProperties(data, goods);
-        return goods;
+        R.put("data", goods);
+        return R;
     }
 
     @Override
@@ -124,5 +126,29 @@ public class goodsServiceImp implements goodsService {
         goodsPO goodsData = new goodsPO();
         BeanUtils.copyProperties(goods, goodsData);
         MyAssert.isZero(goodsmapper.updateById(goodsData));
+    }
+
+    @Override
+    public Map<String, Object> GetGoodsByStoreId(goodsPageDTO page) {
+        Map<String, Object> goodsMap = new HashMap<>();
+        LambdaUpdateWrapper<goodsPO> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
+        lambdaUpdateWrapper.eq(goodsPO::getStoreId, page.getStoreId());
+        Page<goodsPO> goodsPage = new Page<>(page.getPage(), page.getPageSize());
+        IPage<goodsPO> goodsPOIPage = goodsmapper.selectPage(goodsPage, lambdaUpdateWrapper);
+        MyAssert.notEmpty(goodsPOIPage.getRecords(), "查询为空");
+        goodsMap.put("data", goodsPOIPage.getRecords());
+        goodsMap.put("total", goodsPOIPage.getTotal());
+        goodsMap.put("pages", goodsPOIPage.getPages());
+        return goodsMap;
+    }
+
+    @Override
+    public couponsPO checkCouponsById(Integer gid, Integer couponsId) {
+        Integer i = couponsMapper.checkCouponsById(gid, couponsId);
+        if (i>0) {
+            couponsPO couponsData = couponsMapper.selectById(couponsId);
+            return couponsData;
+        }
+        return null;
     }
 }
