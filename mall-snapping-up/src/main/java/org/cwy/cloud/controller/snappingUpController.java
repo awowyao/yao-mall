@@ -20,9 +20,18 @@ public class snappingUpController {
     public CommonResult getSnappingUp(@RequestBody snappingUpPageDTO snappingUpPageDTO) {
         Map<String, Object> data = snappingUpService.getSnappingUp(snappingUpPageDTO);
         return CommonResult.success(data);
-
+    }
+    @GetMapping("/SnappingUp")
+    public CommonResult getSnappingUp(Integer snappingId) {
+        Map<String, Object> data = snappingUpService.getSnappingUpById(snappingId);
+        return CommonResult.success(data);
     }
 
+    @GetMapping("/getSkuPrice")
+    public Double getSkuPrice(Integer SkuId) {
+        Double Price = snappingUpService.getSkuPrice(SkuId);
+        return Price;
+    }
     @PostMapping("/addSnappingUpOrder")
     public CommonResult<String> addSnappingUpOrder(@RequestBody snappingUpOrderDTO snappingUpOrder) {
         Integer state = snappingUpService.addSnappingUpOrder(snappingUpOrder);

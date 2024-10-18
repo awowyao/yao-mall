@@ -10,6 +10,7 @@ import org.cwy.cloud.mapper.userMapper;
 
 import org.cwy.cloud.modle.PO.addressPO;
 import org.cwy.cloud.service.userService;
+import org.cwy.cloud.util.RedisUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,6 +26,9 @@ public class userServiceImpl implements userService {
     private uniqidFeign uniqidFeign;
     @Resource
     private couponsFeign couponsFeign;
+
+    @Resource
+    private RedisUtil redisUtil;
     @Override
     public addressPO GetAddress(Integer id) {
         return null;
@@ -39,7 +43,6 @@ public class userServiceImpl implements userService {
     @Override
     public void getCoupons(CouponsDTO coupons) {
         coupons.setId(uniqidFeign.GetId(1));
-        System.out.println(coupons);
         Integer i =userMapper.insertCoupons(coupons);
     }
 
@@ -53,5 +56,16 @@ public class userServiceImpl implements userService {
         }
 
         return rData;
+    }
+
+    @Override
+    public Integer concernStore(Integer userId, Integer storeId) {
+        redisUtil.setZSet("like_"+userId, storeId, System.currentTimeMillis());
+        return userMapper.concernStore(uniqidFeign.GetId(1) ,userId, storeId);
+    }
+
+    @Override
+    public List<Integer> storeGetFens(Integer storeId) {
+        return userMapper.storeGetFens(storeId);
     }
 }

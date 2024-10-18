@@ -3,6 +3,7 @@ package org.cwy.cloud.oauth2.extension.password;
 
 import cn.hutool.core.lang.Assert;
 
+import io.lettuce.core.ScriptOutputType;
 import lombok.extern.slf4j.Slf4j;
 import org.cwy.cloud.util.OAuth2AuthenticationProviderUtils;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,6 +11,9 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.*;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
@@ -74,32 +78,34 @@ public class PasswordAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-
         PasswordAuthenticationToken passwordAuthenticationToken = (PasswordAuthenticationToken) authentication;
         OAuth2ClientAuthenticationToken clientPrincipal = OAuth2AuthenticationProviderUtils
                 .getAuthenticatedClientElseThrowInvalidClient(passwordAuthenticationToken);
         RegisteredClient registeredClient = clientPrincipal.getRegisteredClient();
-
         // 验证客户端是否支持授权类型(grant_type=password)
-        if (!registeredClient.getAuthorizationGrantTypes().contains(AuthorizationGrantType.PASSWORD)) {
+        System.out.println(registeredClient);
+        if (!registeredClient.getAuthorizationGrantTypes().contains(PasswordAuthenticationToken.PASSWORD)) {
+            System.out.println(1123123123);
             throw new OAuth2AuthenticationException(OAuth2ErrorCodes.UNAUTHORIZED_CLIENT);
         }
+
 
         Map<String, Object> additionalParameters = passwordAuthenticationToken.getAdditionalParameters();
 
 
         // 生成用户名密码身份验证令牌
-
         String username = (String) additionalParameters.get(OAuth2ParameterNames.USERNAME);
         String password = (String) additionalParameters.get(OAuth2ParameterNames.PASSWORD);
-        System.out.println("qqqqqqq");
 
+//        UserDetails userDetails = new User("test","admin", AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+//        Authentication usernamePasswordAuthentication = new UsernamePasswordAuthenticationToken(userDetails, null);
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
 
         // 用户名密码身份验证，成功后返回带有权限的认证信息
         Authentication usernamePasswordAuthentication;
         try {
             usernamePasswordAuthentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
             System.out.println(usernamePasswordAuthentication);
         } catch (Exception e) {
             // 需要将其他类型的异常转换为 OAuth2AuthenticationException 才能被自定义异常捕获处理，逻辑源码 OAuth2TokenEndpointFilter#doFilterInternal

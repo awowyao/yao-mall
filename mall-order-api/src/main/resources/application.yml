@@ -2,6 +2,9 @@ server:
   port: 8082
 
 spring:
+  mvc:
+    async:
+      request-timeout: 60000 # 例如，设置为60秒
   application:
     name: mall-order-server
   datasource:
@@ -20,6 +23,11 @@ spring:
     date:
       host: 127.0.0.1
       port: 6379
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://127.0.0.1:9001/oauth2/jwks
   cloud:
 #    openfeign:
 #      httpclient:

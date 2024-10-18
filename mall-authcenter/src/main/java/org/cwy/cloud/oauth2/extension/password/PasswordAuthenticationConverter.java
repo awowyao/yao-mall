@@ -35,7 +35,6 @@ public class PasswordAuthenticationConverter implements AuthenticationConverter 
 
         // 授权类型 (必需)
         String grantType = request.getParameter(OAuth2ParameterNames.GRANT_TYPE);
-        System.out.println(grantType);
         if (!AuthorizationGrantType.PASSWORD.getValue().equals(grantType)) {
             return null;
         }

@@ -16,4 +16,9 @@ public interface userService {
     void getCoupons(CouponsDTO coupons);
 
     List<Map<String, Object>> getCouponsList();
+
+
+    Integer concernStore(Integer id, Integer storeId);
+
+    List<Integer> storeGetFens(Integer storeId);
 }

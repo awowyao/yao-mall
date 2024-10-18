@@ -19,6 +19,8 @@
         <module>mall-unqid</module>
         <module>mall-pay</module>
         <module>mall-snapping-up</module>
+        <module>mall-car</module>
+        <module>mall-openFeign</module>
     </modules>
     <packaging>pom</packaging>
 

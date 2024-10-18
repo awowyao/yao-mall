@@ -5,13 +5,17 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import jakarta.annotation.Resource;
 import org.cwy.cloud.oauth2.extension.oidc.CustomOidcAuthenticationConverter;
 import org.cwy.cloud.oauth2.extension.oidc.CustomOidcAuthenticationProvider;
 import org.cwy.cloud.oauth2.extension.oidc.CustomOidcUserInfoService;
 import org.cwy.cloud.oauth2.extension.password.PasswordAuthenticationConverter;
 import org.cwy.cloud.oauth2.extension.password.PasswordAuthenticationProvider;
+import org.cwy.cloud.oauth2.extension.storePassword.StorePasswordAuthenticationConverter;
+import org.cwy.cloud.oauth2.extension.storePassword.StorePasswordAuthenticationProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,7 +29,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.OAuth2Token;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.authorization.JdbcOAuth2AuthorizationConsentService;
 import org.springframework.security.oauth2.server.authorization.JdbcOAuth2AuthorizationService;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationConsentService;
@@ -38,6 +41,9 @@ import org.springframework.security.oauth2.server.authorization.settings.Authori
 import org.springframework.security.oauth2.server.authorization.token.*;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
+import org.springframework.security.web.session.DisableEncodeUrlFilter;
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 
 import java.security.KeyPair;
@@ -51,6 +57,8 @@ import java.util.UUID;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    @Resource
+//    private JwtAythenticationTokenFilter jwtAythenticationTokenFilt;
     private CustomOidcUserInfoService customOidcUserInfoService;
     @Bean
     @Order(1)
@@ -59,19 +67,22 @@ public class SecurityConfig {
                                                                       OAuth2AuthorizationService authorizationService,
                                                                       OAuth2TokenGenerator<? extends OAuth2Token> tokenGenerator)
             throws Exception {
+
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
 
         http.getConfigurer(OAuth2AuthorizationServerConfigurer.class)
                         .tokenEndpoint(tokenEndpoint -> tokenEndpoint
                                 .accessTokenRequestConverters(authenticationConverters-> authenticationConverters
                                         .addAll(List.of(
-                                                new PasswordAuthenticationConverter()
+                                                new PasswordAuthenticationConverter(),
+                                                new StorePasswordAuthenticationConverter()
                                         )
                                         )
                                 )
                                 .authenticationProviders(authenticationProviders -> authenticationProviders
                                         .addAll(List.of(
-                                                new PasswordAuthenticationProvider(authenticationManager, authorizationService, tokenGenerator)
+                                                new PasswordAuthenticationProvider(authenticationManager, authorizationService, tokenGenerator),
+                                                new StorePasswordAuthenticationProvider(authenticationManager, authorizationService, tokenGenerator)
 
                                         )))
                         );
@@ -91,31 +102,39 @@ public class SecurityConfig {
                 // 使用jwt处理接收到的access token
                 .oauth2ResourceServer((resourceServer) -> resourceServer
                         .jwt(Customizer.withDefaults()));
+//        http.addFilterBefore(jwtAythenticationTokenFilt, UsernamePasswordAuthenticationFilter.class);
+
+//        http.authorizeHttpRequests((auth)-> auth.requestMatchers("/user/api/userSign").permitAll()
+//        .anyRequest().authenticated());
+
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
 
-
     /**
      *Spring Security 过滤链配置（此处是纯Spring Security相关配置）
      */
-//    @Bean
-//    @Order(2)
-//    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http)
-//            throws Exception {
-//        http
-//                //设置所有请求都需要认证，未认证的请求都被重定向到login页面进行登录
-//                .authorizeHttpRequests((authorize) -> authorize
-//                        .requestMatchers("/oauth/user/login").permitAll()
-//                        .anyRequest().authenticated()
-//                )
-//                // 由Spring Security过滤链中UsernamePasswordAuthenticationFilter过滤器拦截处理“login”页面提交的登录信息。
+    @Bean
+    @Order(2)
+    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http)
+            throws Exception {
+        http
+                //设置所有请求都需要认证，未认证的请求都被重定向到login页面进行登录
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/user/api/*").permitAll()
+                        .anyRequest().authenticated()
+                );
+        http.csrf(AbstractHttpConfigurer::disable);
+
+        return http.build();
+                // 由Spring Security过滤链中UsernamePasswordAuthenticationFilter过滤器拦截处理“login”页面提交的登录信息。
 //                .formLogin(Customizer.withDefaults());
-////                http.authorizeHttpRequests((auth)-> auth.requestMatchers("/oauth/sign").permitAll().requestMatchers("/oauth/user/login").permitAll()
-////                .anyRequest().authenticated());
-//
+//                http.authorizeHttpRequests((auth)-> auth.requestMatchers("/oauth/sign").permitAll().requestMatchers("/oauth/user/login").permitAll()
+//                .anyRequest().authenticated());
+//        http.authorizeHttpRequests((auth)-> auth.requestMatchers("/user/api/userSign").permitAll()
+//                .anyRequest().authenticated());
 //        return http.build();
-//    }
+    }
 
     /**
      * 客户端信息

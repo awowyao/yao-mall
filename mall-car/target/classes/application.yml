@@ -1,0 +1,43 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: mall-car
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mall-user?serverTimezone=UTC&userUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8080
+#        port: 8719
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://127.0.0.1:9001/oauth2/jwks
+#seata:
+#  registry:
+#    type: nacos
+#    nacos:
+#      server-addr: 127.0.0.1:8848
+#      namespace: ""
+#      group: DEFAULT_GROUP
+#      application: seata-server
+#  tx-service-group: default_tx_group
+#  service:
+#    vgroup-mapping:
+#      default_tx_group: default
+#  data-source-proxy-mode: AT
+#
+#logging:
+#  level:
+#    io:
+#      seata: info

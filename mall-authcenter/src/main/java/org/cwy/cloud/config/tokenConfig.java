@@ -2,9 +2,11 @@ package org.cwy.cloud.config;
 
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import org.cwy.cloud.model.mallUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,11 +31,11 @@ public class tokenConfig {
                 // Customize headers/claims for access_token
                 Optional.ofNullable(context.getPrincipal().getPrincipal()).ifPresent(principal -> {
                     JwtClaimsSet.Builder claims = context.getClaims();
-                    if (principal instanceof UserDetails userDetails) { // 系统用户添加自定义字段
+                    if (principal instanceof mallUserDetails userDetails) { // 系统用户添加自定义字段
 
 //                        claims.claim(JwtClaimConstants.USER_ID, userDetails.getUserId());
                         claims.claim("name", userDetails.getUsername());
-                        claims.claim("id", "1");
+                        claims.claim("id", userDetails.getId());
 //                        claims.claim(JwtClaimConstants.DEPT_ID, userDetails.getDeptId());
 //                        claims.claim(JwtClaimConstants.DATA_SCOPE, userDetails.getDataScope());
 

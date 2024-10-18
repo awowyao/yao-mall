@@ -1,7 +1,7 @@
 package org.cwy.cloud.handler;
 
 import jakarta.annotation.Resource;
-import org.cwy.cloud.common.api.CommonResult;
+
 import org.cwy.cloud.feign.AuthcentFeign;
 import org.cwy.cloud.feign.uniqidFeign;
 import org.cwy.cloud.model.UserAuto;

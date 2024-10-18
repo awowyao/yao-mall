@@ -13,12 +13,37 @@ import java.util.Map;
 @Configuration
 public class rabbitMqConfig {
 
+    // 异步更新数据库的交换机
+    private static final String orderUpMysqlExchange = "orderUpMysqlExchange";
+    // 异步更新数据库的队列
+    private static final String orderUpMysqlQueue = "orderUpMysqlQueue";
+    // 异步更新数据库的key
+    private static final String orderUpMysqlKey = "order.up.mysql.*";
     @Bean
     public MessageConverter jsonMessageConverter() {
         return new Jackson2JsonMessageConverter();
     }
+    /**
+     * @description:  异步保存Mysql数据库路由
+     * @param:
+     * @return: org.springframework.amqp.core.TopicExchange
+     * @author yao
+     * @date: 2024/8/21 15:54
+     */
+    @Bean
+    public TopicExchange orderUpMysqlExchange() {
+        return new TopicExchange(orderUpMysqlExchange);
+    }
 
+    @Bean
+    public Queue orderUpMysqlQueue() {
+        return new Queue(orderUpMysqlQueue,true,false,false);
+    }
 
+    @Bean
+    public Binding orderUpMysqlBinding() {
+        return BindingBuilder.bind(orderUpMysqlQueue()).to(orderUpMysqlExchange()).with(orderUpMysqlKey);
+    }
 
     @Bean
     public DirectExchange userOrderDelayExchange() {

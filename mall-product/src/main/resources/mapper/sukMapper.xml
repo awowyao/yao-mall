@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.cwy.cloud.mapper.skuMapper">
+    <resultMap type="org.cwy.cloud.model.PO.skuKeyPO" id="skuKeyResult">
+        <result property="skuKey" column="sku_key"/>
+    </resultMap>
+
+    <resultMap type="org.cwy.cloud.model.PO.skuValuePO" id="sukValueResult">
+        <result property="keyId" column="key_id"/>
+        <result property="skuValue" column="sku_value"/>
+    </resultMap>
+
+    <resultMap type="org.cwy.cloud.model.PO.goodsSkuPO" id="goodsSkuResult">
+        <result property="keyO" column="key_"/>
+        <result property="valueO" column="value_o"/>
+        <result property="keyT" column="key_t"/>
+        <result property="valueT" column="value_t"/>
+        <result property="keyS" column="key_s"/>
+        <result property="valueS" column="value_s"/>
+        <result property="createTime" column="update_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <insert id="addSkuKey">
+        INSERT INTO sku_key_table (id, gid, sid, sku_key, ranking) VALUES (#{id}, #{gid}, #{sid}, #{skuKey}, #{ranking})
+    </insert>
+    <insert id="addSkuValue">
+        INSERT INTO sku_value_table (id, key_id, sku_value) VALUES (#{id}, #{keyId}, #{value})
+    </insert>
+
+    <select id="getSkuKeys" resultMap="skuKeyResult" parameterType="java.lang.Integer">
+        SELECT * from sku_key_table where gid=#{gid};
+    </select>
+
+    <select id="getSkuValues" resultMap="sukValueResult" parameterType="java.lang.Integer">
+        SELECT * from sku_value_table where key_id=#{keyId};
+    </select>
+    <select id="getSkuCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT COUNT(*) from sku_key_table where gid=#{gid};
+    </select>
+</mapper>

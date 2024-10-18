@@ -1,30 +1,41 @@
 package org.cwy.cloud.service.Imp;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.annotation.Resource;
+import org.apache.tomcat.util.threads.ThreadPoolExecutor;
 import org.cwy.cloud.common.MyAssert;
 import org.cwy.cloud.feign.uniqidFeign;
+import org.cwy.cloud.feign.userFeign;
 import org.cwy.cloud.mapper.couponsMapper;
 import org.cwy.cloud.mapper.goodsMapper;
+import org.cwy.cloud.mapper.skuMapper;
 import org.cwy.cloud.model.DTO.addGoodsDTO;
 import org.cwy.cloud.model.DTO.editGoodsDTO;
-import org.cwy.cloud.model.DTO.goodsDTO;
 import org.cwy.cloud.model.DTO.goodsPageDTO;
 import org.cwy.cloud.model.PO.couponsPO;
 import org.cwy.cloud.model.PO.goodsPO;
 import org.cwy.cloud.model.VO.goodsVO;
 import org.cwy.cloud.service.goodsService;
+import org.cwy.cloud.util.RedisUtil;
+import org.cwy.cloud.utils.AuthTokenUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import static org.cwy.cloud.common.goodsCommon.GOODS_DELETE;
 import static org.cwy.cloud.common.goodsCommon.GOODS_UP;
+import static org.cwy.cloud.model.productStatic.UserLikeBox;
 
 
 @Service
@@ -37,6 +48,15 @@ public class goodsServiceImp implements goodsService {
 
     @Resource
     private uniqidFeign uniqidFeign;
+    @Resource
+    private skuMapper sukMapper;
+    @Resource
+    private userFeign userFeign;
+    @Resource
+    private RedisUtil redisUtil;
+    @Resource
+    private ThreadPoolExecutor threadPoolExecutor;
+    private Logger log = LoggerFactory.getLogger(getClass());
     @Override
     public List<goodsVO> GetGoodsAll(goodsPageDTO goodsPage) {
 
@@ -98,18 +118,58 @@ public class goodsServiceImp implements goodsService {
     }
 
     @Override
-    public boolean addGoods(addGoodsDTO goods) {
+    @Transactional
+    public boolean addGoods(addGoodsDTO goods) throws ExecutionException, InterruptedException {
         goodsPO goodsData = new goodsPO();
-        goodsData.setId(uniqidFeign.GetId(1));
+        Integer goodsId = uniqidFeign.GetId(1);
+        goodsData.setId(goodsId);
         goodsData.setInventory(goods.getInventory());
-        goodsData.setPrice(goods.getPrice());
+        if (goods.getPrice() > 0) {
+            goodsData.setPrice(goods.getPrice());
+        }else {
+            goodsData.setPrice(0);
+        }
+
+        if (goods.getSkuType() == 0) {
+            goodsData.setPrice(-1);
+        }
         goodsData.setTitle(goods.getTitle());
         goodsData.setGoodsType(goods.getGoodsType());
         goodsData.setSynopsis(goods.getSynopsis());
         goodsData.setPhoto(goods.getPhoto());
         goodsData.setGoodsStatue(GOODS_UP);
+//        AuthTokenUtil.getUserId();
         goodsData.setStoreId(1);
-        goodsmapper.insert(goodsData);
+        List<Integer> userId =  userFeign.storeGetFens(1);
+        CompletableFuture<Void> completableFuture = CompletableFuture.supplyAsync(()->{
+            goodsmapper.insert(goodsData);
+            return null;
+        }, threadPoolExecutor);
+
+//        CompletableFuture.anyOf(completableFuture).thenRun(()->{
+//            if (goods.getSuk1() != null) {
+//                CompletableFuture.supplyAsync(() -> {
+//                    goods.getSuk1().forEach(suk -> {
+//                        Integer s = sukMapper.addSukOne(uniqidFeign.GetId(1), goodsId, suk);
+//                    });
+//                    return null;
+//                }, threadPoolExecutor);
+//            }
+//
+//            if (goods.getSuk2() != null) {
+//                CompletableFuture.supplyAsync(()->{
+//                    goods.getSuk2().forEach(suk -> {
+//                        Integer s = sukMapper.addSukT(uniqidFeign.GetId(1), goodsId, suk);
+//                    });
+//                    return null;
+//                }, threadPoolExecutor);
+//            }
+//        }).join();
+
+        userId.forEach(id ->{
+            redisUtil.setZSet(UserLikeBox+id, goodsData.getId(), System.currentTimeMillis());
+        });
+
         return true;
     }
 
@@ -150,5 +210,26 @@ public class goodsServiceImp implements goodsService {
             return couponsData;
         }
         return null;
+    }
+
+    @Override
+    public Map<String, Object> getLikeStoreNewGoods(goodsPageDTO goodsPage) {
+        Map<String, Object> tokenAttributes = AuthTokenUtil.getTokenAttributes();
+        String UserId = (String) tokenAttributes.get("id");
+        MyAssert.notEmpty(tokenAttributes, "123");
+        Set<Object> goodsIdSet = redisUtil.getZSet(UserLikeBox + UserId);
+        List<goodsPO> goodsPOList = new ArrayList<>();
+        goodsIdSet.forEach(id -> {
+            goodsPOList.add(
+                    goodsmapper.selectById(Integer.valueOf(id.toString()))
+            );
+        });
+        List<goodsVO> goodsVOS = goodsPOList.stream().map(goodsPO ->
+            BeanUtil.copyProperties(goodsPO, goodsVO.class)
+        ).toList();
+
+        Map<String, Object> rMap = new HashMap<>();
+        rMap.put("data", goodsVOS);
+        return rMap;
     }
 }

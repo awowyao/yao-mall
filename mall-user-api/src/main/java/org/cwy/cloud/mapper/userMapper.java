@@ -17,4 +17,10 @@ public interface userMapper extends BaseMapper<userPO> {
     Integer insertCoupons(@Param("coupons") CouponsDTO coupons);
 
     List<Integer> getCouponsListByUid(@Param("uid") int uid);
+
+    Integer concernStore(@Param("id") int Id,
+                         @Param("uid") Integer userId,
+                         @Param("sid") Integer storeId);
+
+    List<Integer> storeGetFens(@Param("sid") Integer storeId);
 }

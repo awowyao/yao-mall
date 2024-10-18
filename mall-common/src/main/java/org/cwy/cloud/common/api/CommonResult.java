@@ -12,11 +12,13 @@ public class CommonResult<T> {
     protected CommonResult() {
     }
 
+
     protected CommonResult(long code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;
     }
+
 
     /**
      * 成功返回结果

@@ -16,12 +16,14 @@
 //import org.springframework.web.filter.OncePerRequestFilter;
 //
 //import java.io.IOException;
+//import java.util.Enumeration;
+//
 ///*
 //    securityJWT过滤器
 //
 //*/
 //@Component
-//public class JwtAythenticationTokenFilter extends OncePerRequestFilter {
+//public class JwtAythenticationTokenFilter extends OncePerRequestFilter  {
 //    @Autowired
 //    private accountUserDetailsService accountuserDetailsService;
 //    @Autowired
@@ -32,16 +34,25 @@
 //    private String tokenHead;
 //    @Override
 //    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-//        String authHeader = request.getHeader(this.tokenHeader);
-//        System.out.println(authHeader);
-//        if(authHeader !=null && authHeader.startsWith(this.tokenHead)){
-//            String token = authHeader.substring(this.tokenHead.length());
-//            String userName = jwtUtil.getUsernameFromToken(token);
-//            UserDetails userDetails = this.accountuserDetailsService.loadUserByUsername(userName);
-//            UsernamePasswordAuthenticationToken authe = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
-//            authe.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//            SecurityContextHolder.getContext().setAuthentication(authe);
+////        String authHeader = request;
+//        System.out.println(123);
+//        Enumeration<String> enumeration = request.getHeaderNames();
+//        while (enumeration.hasMoreElements()) {
+//            String name	= enumeration.nextElement();
+//            String value = request.getHeader(name);
+//            System.out.println(name);
+//            System.out.println(value);
 //        }
-//        filterChain.doFilter(request,response);
+////        filterChain.doFilter(request,response);
+////        System.out.println(authHeader);
+////        if(authHeader !=null && authHeader.startsWith(this.tokenHead)){
+////            String token = authHeader.substring(this.tokenHead.length());
+////            String userName = jwtUtil.getUsernameFromToken(token);
+////            UserDetails userDetails = this.accountuserDetailsService.loadUserByUsername(userName);
+////            UsernamePasswordAuthenticationToken authe = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+////            authe.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+////            SecurityContextHolder.getContext().setAuthentication(authe);
+////        }
+////        filterChain.doFilter(request,response);
 //    }
 //}

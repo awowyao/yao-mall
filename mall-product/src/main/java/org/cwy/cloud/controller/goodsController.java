@@ -40,4 +40,10 @@ public class goodsController {
         return CommonResult.success(goods);
     }
 
+    @GetMapping("/getLikeStoreNewGoods")
+    CommonResult getLikeStoreNewGoods(goodsPageDTO goodsPage){
+        Map<String, Object> goods = goodsservice.getLikeStoreNewGoods(goodsPage);
+        return CommonResult.success(goods);
+    }
+
 }

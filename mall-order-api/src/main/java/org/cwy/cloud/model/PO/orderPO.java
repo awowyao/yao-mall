@@ -19,6 +19,7 @@ public class orderPO implements Serializable {
     private Integer buyUserId;
     private Integer returnable_id;
     private Integer buyNub;
+    private Integer skuId;
     private Integer buyGoodsId;
     private Integer state;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

@@ -28,7 +28,7 @@ public class WebSecurityConfig {
                 .anyExchange().authenticated()
         );
         // 开启OAuth2登录
-        http.oauth2Login(Customizer.withDefaults());
+//        http.oauth2Login(Customizer.withDefaults());
 
         // 设置当前服务为资源服务，解析请求头中的token
         http.oauth2ResourceServer((resourceServer) -> resourceServer

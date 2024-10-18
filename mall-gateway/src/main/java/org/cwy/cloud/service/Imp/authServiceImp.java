@@ -2,7 +2,7 @@ package org.cwy.cloud.service.Imp;
 
 import com.alibaba.nacos.shaded.com.google.gson.JsonObject;
 import jakarta.annotation.Resource;
-import org.cwy.cloud.common.api.CommonResult;
+
 
 import org.cwy.cloud.feign.AuthcentFeign;
 import org.cwy.cloud.feign.uniqidFeign;

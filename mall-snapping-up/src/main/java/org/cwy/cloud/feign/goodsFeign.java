@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("mall-product")
 public interface goodsFeign {
     @GetMapping("/goodsApi/getGoodsById")
-    public CommonResult getGoodsById(@RequestParam(value = "goosdId", defaultValue = "1") Integer goosdId);
+    public CommonResult getGoodsByIds(@RequestParam Integer goodsId);
     @GetMapping("/subtractInventory")
     public int subtractInventory(@RequestParam Integer goodsId, @RequestParam Integer buyNub);
 

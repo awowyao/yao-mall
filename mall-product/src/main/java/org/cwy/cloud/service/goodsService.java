@@ -10,6 +10,7 @@ import org.cwy.cloud.model.VO.goodsVO;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public interface goodsService {
     List<goodsVO> GetGoodsAll(goodsPageDTO goodsPageDTO);
@@ -22,7 +23,7 @@ public interface goodsService {
 
     List<goodsPO> getGoods(goodsPageDTO pageDTO);
 
-    boolean addGoods(addGoodsDTO goods);
+    boolean addGoods(addGoodsDTO goods) throws ExecutionException, InterruptedException;
 
     void deleteGoods(Integer goodsId);
 
@@ -31,4 +32,6 @@ public interface goodsService {
     Map<String, Object> GetGoodsByStoreId(goodsPageDTO goodsPage);
 
     couponsPO checkCouponsById(Integer gid, Integer couponsId);
+
+    Map<String, Object> getLikeStoreNewGoods(goodsPageDTO goodsPage);
 }

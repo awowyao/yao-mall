@@ -76,6 +76,7 @@ public class JWTUtil {
     private String createToken(Map<String, Object> claims) {
         //jjwt构建jwt builder
         //设置信息，过期时间，signnature
+        System.out.println("aaaaaaa");
         return Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(expirationDate())
@@ -87,7 +88,8 @@ public class JWTUtil {
     private Date expirationDate() {
         //失效时间为：系统当前毫秒数+我们设置的时间（s）*1000=》毫秒
         //其实就是未来7天
-        return new Date(System.currentTimeMillis() + expiration * 1000);
+        System.out.println(1312312);
+        return new Date(System.currentTimeMillis() + expiration * 200000);
     }
 
     //判断token是否有效

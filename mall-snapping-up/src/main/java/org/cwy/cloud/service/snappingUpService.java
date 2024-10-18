@@ -19,4 +19,8 @@ public interface snappingUpService {
     boolean editSnappingUpById(editSnappingUpDTO snapping);
 
     Map<String, Object> getSnappingUp(snappingUpPageDTO snappingUpPageDTO);
+
+    Map<String, Object> getSnappingUpById(Integer snappingId);
+
+    Double getSkuPrice(Integer skuId);
 }

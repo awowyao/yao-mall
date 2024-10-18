@@ -3,7 +3,7 @@ package org.cwy.cloud.oauth2.extension.oidc;
 //import com.youlai.system.api.UserFeignClient;
 //import com.youlai.system.dto.UserAuthInfo;
 import lombok.extern.slf4j.Slf4j;
-import org.cwy.cloud.model.UserM;
+import org.cwy.cloud.model.UserPO;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -25,7 +25,7 @@ public class CustomOidcUserInfoService {
 //    }
 
     public CustomOidcUserInfo loadUserByUsername(String username) {
-        UserM userAuthInfo = null;
+        UserPO userAuthInfo = null;
         userAuthInfo.setName("test");
         userAuthInfo.setId(2);
         try {
@@ -39,7 +39,7 @@ public class CustomOidcUserInfoService {
         }
     }
 
-    private Map<String, Object> createUser(UserM userAuthInfo) {
+    private Map<String, Object> createUser(UserPO userAuthInfo) {
         return CustomOidcUserInfo.customBuilder()
                 .username(userAuthInfo.getName())
                 .nickname("123")

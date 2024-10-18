@@ -1,21 +1,25 @@
 package org.cwy.cloud.model.VO;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
 
 @Data
-@TableName("goods_table")
 public class goodsVO {
-    @TableId(type = IdType.AUTO)
     Integer id;
     String title;
-    String goods_type;
+    String goodsType;
     String synopsis;
     String photo;
     double price;
-    String Inventory;
-    Integer store;
-
+    Integer Inventory;
+    Integer storeId;
+    Integer goodsStatue;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updateTime;
 }

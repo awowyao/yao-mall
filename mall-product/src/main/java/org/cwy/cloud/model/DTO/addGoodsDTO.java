@@ -3,6 +3,7 @@ package org.cwy.cloud.model.DTO;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author yao
@@ -18,5 +19,7 @@ public class addGoodsDTO implements Serializable {
     String synopsis;
     String photo;
     Double price;
+    Integer skuType;
     Integer Inventory;
+
 }

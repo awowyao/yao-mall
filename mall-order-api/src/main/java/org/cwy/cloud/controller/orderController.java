@@ -6,6 +6,7 @@ import org.cwy.cloud.common.api.CommonResult;
 import org.cwy.cloud.model.DTO.orderPage;
 import org.cwy.cloud.model.PO.orderMsgPO;
 import org.cwy.cloud.service.orderService;
+import org.cwy.cloud.utils.AuthTokenUtil;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +24,13 @@ public class orderController {
     @GetMapping("/GetOrderId")
     public CommonResult GetOrderId(@RequestParam("goodsId") Integer goodsId,
                                    @RequestParam("buyNub") Integer buyNub){
-        Integer userId = 3;
+        Integer userId = AuthTokenUtil.getUserId();;
         Integer id = orderservice.getOrderId(userId, goodsId, buyNub);
         return CommonResult.success(id);
     }
     @GetMapping("/order")
     public CommonResult GetOrderList(orderPage page){
-        Integer userId = 3;
+        Integer userId = AuthTokenUtil.getUserId();
         page.setUserId(userId);
         Map<String, Object> data = orderservice.getOrderList(page);
         return CommonResult.success(data);
@@ -37,7 +38,7 @@ public class orderController {
 
     @PostMapping("/addOrder")
     public CommonResult addOrder(@RequestBody orderDTO orderData) throws InterruptedException {
-        Integer userId = 1;
+        Integer userId = AuthTokenUtil.getUserId();;
         orderData.setBuyUserId(userId);
         Integer id = orderservice.addOrder(orderData);
         if (id==1){

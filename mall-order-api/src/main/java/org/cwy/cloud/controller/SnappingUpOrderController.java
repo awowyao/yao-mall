@@ -4,6 +4,7 @@ import jakarta.annotation.Resource;
 import org.cwy.cloud.model.DTO.orderDTO;
 import org.cwy.cloud.common.api.CommonResult;
 import org.cwy.cloud.service.snappingUpOrderService;
+import org.cwy.cloud.utils.AuthTokenUtil;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,21 +13,20 @@ public class SnappingUpOrderController {
     @Resource
     private snappingUpOrderService snappingUpOrderService;
 
-    @GetMapping("/test")
-    public String test() {
-        return "123";
-    }
+
     @GetMapping("/GetSnapingOrderId")
     public CommonResult GetSnapingOrderId(@RequestParam("goodsId") Integer goodsId,
+                                          @RequestParam("SnapingId") Integer SnapingId,
+                                          @RequestParam("sku") Integer sku,
                                           @RequestParam("buyNub") Integer buyNub){
-        Integer userId = 3;
-//        Integer id = snappingUpOrderService.getSnappingOrderId(userId, goodsId, buyNub);
-        return CommonResult.success(1);
+        Integer userId = AuthTokenUtil.getUserId();;
+        Integer id = snappingUpOrderService.getSnappingOrderId(userId, goodsId,SnapingId,sku,buyNub);
+        return CommonResult.success(id);
     }
 
-    @PostMapping("/addOrder")
+    @PostMapping(value = "/addOrder")
     public CommonResult addOrder(@RequestBody orderDTO orderData) throws InterruptedException {
-        Integer userId = 3;
+        Integer userId = AuthTokenUtil.getUserId();;
         orderData.setBuyUserId(userId);
         Integer id = snappingUpOrderService.addSnappingUpOrder(orderData);
         if (id==1){
