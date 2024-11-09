@@ -8,14 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mall-openFeign" />
+        <module name="mall-redis" />
         <module name="mall-snapping-up" />
         <module name="mall-order-api" />
-        <module name="mall-authcenter" />
-        <module name="mall-common" />
-        <module name="mall-redis" />
         <module name="mall-car" />
         <module name="mall-user-api" />
+        <module name="mall-authcenter" />
         <module name="mall-unqid" />
+        <module name="mall-common" />
         <module name="mall-product" />
         <module name="mall-gateway" />
         <module name="mall-pay" />
